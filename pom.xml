@@ -5,6 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>spring-practice-aop-demo</module>
+        <module>spring-practice-beanfactorypostprocessor-demo</module>
+        <module>spring-practice-beanpostprocessor-demo</module>
+        <module>spring-practice-applicationcontextinitializer-demo</module>
+        <module>spring-practice-cycledepency-demo</module>
     </modules>
 
     <parent>
