@@ -12,7 +12,8 @@ public class TxTest {
     public void testTx() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         UserService bean = context.getBean(UserService.class);
-        bean.insert();
+        //bean.insert();
+        bean.deleteUser();
         context.close();
     }
 }
