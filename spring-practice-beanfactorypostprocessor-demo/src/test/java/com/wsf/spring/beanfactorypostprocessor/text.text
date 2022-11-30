@@ -1,0 +1,16 @@
+容器在启动的时候会自动向我们的容器中注册一些BeanFactoryPostProcessor
+new AnnotationConfigApplicationContext()
+    ->  new AnnotatedBeanDefinitionReader(this);
+        -> AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
+            ->
+            [
+                org.springframework.context.annotation.internalConfigurationAnnotationProcessor = ConfigurationClassPostProcessor.class
+                org.springframework.context.annotation.internalAutowiredAnnotationProcessor = AutowiredAnnotationBeanPostProcessor.class
+                org.springframework.context.annotation.internalCommonAnnotationProcessor = CommonAnnotationBeanPostProcessor.class
+                org.springframework.context.annotation.internalPersistenceAnnotationProcessor = PersistenceAnnotationBeanPostProcessor.class
+                org.springframework.context.event.internalEventListenerProcessor = EventListenerMethodProcessor.class
+                org.springframework.context.event.internalEventListenerFactory = DefaultEventListenerFactory.class
+            ]
+
+
+
