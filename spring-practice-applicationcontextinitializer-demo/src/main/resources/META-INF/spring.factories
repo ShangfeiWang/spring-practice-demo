@@ -1,0 +1,2 @@
+# 方式二：通过Spring SPI的机制进行扩展
+#org.springframework.context.ApplicationContextInitializer=com.wsf.spring.applicationcontextinitializer.initializer.TestApplicationContextInitializer
