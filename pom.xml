@@ -10,6 +10,7 @@
         <module>spring-practice-applicationcontextinitializer-demo</module>
         <module>spring-practice-cycledepency-demo</module>
         <module>spring-practice-autoconfigure-demo</module>
+        <module>spring-practice-import-demo</module>
     </modules>
 
     <parent>
