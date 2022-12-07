@@ -3,7 +3,6 @@ package com.wsf.spring.aop.service;
 import com.wsf.spring.aop.dao.UserDao;
 import com.wsf.spring.aop.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -14,7 +13,7 @@ import java.util.UUID;
  * 测试手动提交事务
  */
 
-@Service
+//@Service
 public class TxService {
 
     @Autowired
