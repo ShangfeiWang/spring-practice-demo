@@ -11,6 +11,7 @@
         <module>spring-practice-cycledepency-demo</module>
         <module>spring-practice-autoconfigure-demo</module>
         <module>spring-practice-import-demo</module>
+        <module>spring-practice-demo-context</module>
     </modules>
 
     <parent>

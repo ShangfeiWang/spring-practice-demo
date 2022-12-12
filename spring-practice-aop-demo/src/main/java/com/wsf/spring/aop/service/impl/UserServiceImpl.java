@@ -6,6 +6,7 @@ import com.wsf.spring.aop.model.User;
 import com.wsf.spring.aop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -15,8 +16,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @HelloAspect
-    //@Transactional(rollbackFor = Exception.class)
+    //    @HelloAspect
+    @Transactional(rollbackFor = Exception.class)
     public void insert() {
         User user = new User();
         user.setUsername(UUID.randomUUID().toString().replace("-", ""));

@@ -7,9 +7,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -17,7 +18,7 @@ import javax.sql.DataSource;
 @MapperScan("com.wsf.spring.aop.dao")
 @ComponentScan("com.wsf.spring.aop")
 @Configuration
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 @EnableTransactionManagement
 public class Config {
 
@@ -38,6 +39,12 @@ public class Config {
         Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/*.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
         return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public PlatformTransactionManager platformTransactionManager() {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(dataSource());
+        return dataSourceTransactionManager;
     }
 
 
