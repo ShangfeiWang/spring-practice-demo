@@ -3,7 +3,64 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userService" class="com.wsf.context.service.UserService"/>
+    <bean id="parent" class="com.wsf.context.service.Parent" abstract="true">
+        <property name="name" value="parent"/>
+        <property name="age" value="123"/>
+    </bean>
 
+    <!--
+        singleton: 定义Bean是否是Singleton（单例）。如果设为“true”,则在BeanFactory作用范围内，只维护此Bean的一个实例。如果设为“flase”，Bean将是Prototype（原型）状态，BeanFactory将为每次Bean请求创建一个新的Bean实例。
+        autowire（自动装配，默认为“default”):
+            它定义了Bean的自动装载方式。
+                no:不使用自动装配功能。
+                byName:通过Bean的属性名实现自动装配。
+                byType:通过Bean的类型实现自动装配。
+                constructor:类似于byType，但它是用于构造函数的参数的自动组装。
+                autodetect:通过Bean类的反省机制（introspection）决定是使用“constructor”还是使用“byType”。
+
+        depends-on（依赖对象）：这个Bean在初始化时依赖的对象，这个对象会在这个Bean初始化之前创建。
+        init-method:用来定义Bean的初始化方法，它会在Bean组装之后调用。它必须是一个无参数的方法。
+        destroy-method：用来定义Bean的销毁方法，它在BeanFactory关闭时调用。同样，它也必须是一个无参数的方法。它只能应用于singletonBean。
+        autowire-candidate：采用xml格式配置bean时，将元素的autowire-candidate属性设置为false，这样容器在查找自动装配对象时，将不考虑该bean，即它不会被考虑作为其它bean自动装配的候选者，但是该bean本身还是可以使用自动装配来注入其它bean的。
+
+    -->
+    <bean id="userService"
+          name="userService2"
+          class="com.wsf.context.service.UserService"
+          parent="parent"
+          autowire="byType"
+          depends-on="teacher3333"
+          init-method="init"
+          destroy-method="destroy"
+    >
+        <property name="name" value="son"/>
+
+    </bean>
+    <!--  lazy-init="true" 在BeanFactory启动时不会创建该bean 只有在使用到的时候去创建  -->
+    <bean lazy-init="true" class="com.wsf.context.service.TestLazyInit"/>
+
+    <bean id="teacher3333" class="com.wsf.context.service.Teacher" autowire-candidate="false">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="123"/>
+    </bean>
+
+    <bean id="userService3" factory-method="userService2" factory-bean="userServiceFactory"/>
+    <bean id="userServiceFactory" class="com.wsf.context.service.UserServiceFactory"/>
+
+
+    <!--    （16）MutablePropertyValues：用于封装< property>标签的信息，其实类里面就是有一个 list，list 里面是 PropertyValue 对象，PropertyValue 就是一个 name 和 value 属性，用于封装< property>标签 的名称和值信息 。-->
+    <!--    （17）ConstructorArgumentValues：用于封装< constructor-arg>标签的信息，其实类里面就是有 一个 map，map 中用构造函数的参数顺序作为 key，值作为 value 存储到 map 中 。-->
+    <!--    （18）MethodOverrides：用于封装 lookup-method 和 replaced-method 标签的信息，同样的类里面有一个 Set 对象添加 LookupOverride 对象和 ReplaceOverride 对象。-->
+    <bean class="com.wsf.context.service.UserService4">
+        <!--        <constructor-arg name="stringList">-->
+        <!--            <array>-->
+        <!--                <value type="java.lang.String">123</value>-->
+        <!--                <value type="java.lang.String">456</value>-->
+        <!--                <value type="java.lang.String">789</value>-->
+        <!--            </array>-->
+        <!--        </constructor-arg>-->
+        <constructor-arg name="hello" value="234">
+        </constructor-arg>
+    </bean>
 
 </beans>

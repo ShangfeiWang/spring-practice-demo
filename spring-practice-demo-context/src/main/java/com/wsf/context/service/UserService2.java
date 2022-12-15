@@ -1,7 +1,21 @@
 package com.wsf.context.service;
 
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
-@Component
+@Data
 public class UserService2 {
+
+    private String name;
+
+    private String age;
+
+    private Teacher teacher3;
+
+    public void init() {
+        System.out.println("init....");
+    }
+
+    public void destroy() {
+        System.out.println("destroy...");
+    }
 }
