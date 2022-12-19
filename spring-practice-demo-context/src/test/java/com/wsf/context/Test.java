@@ -5,19 +5,25 @@ import com.wsf.context.service.UserService;
 import com.wsf.context.service.UserService2;
 import com.wsf.context.service.UserService4;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.StringUtils;
 
 public class Test {
 
 
+
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        testBeanName(applicationContext);
-        testParent(applicationContext);
-        testAbstract(applicationContext);
-        testLazyInit(applicationContext);
-        testFactoryBean(applicationContext);
-        testConstructor(applicationContext);
+//        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+//        testBeanName(applicationContext);
+//        testParent(applicationContext);
+//        testAbstract(applicationContext);
+//        testLazyInit(applicationContext);
+//        testFactoryBean(applicationContext);
+//        testConstructor(applicationContext);
+
+        String[] strings = StringUtils.tokenizeToStringArray("hello1", ",;");
+        for (String string : strings) {
+            System.out.println(string);
+        }
     }
 
     public static void testConstructor(ApplicationContext applicationContext) {

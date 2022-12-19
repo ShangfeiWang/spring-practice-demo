@@ -12,6 +12,7 @@
         <module>spring-practice-autoconfigure-demo</module>
         <module>spring-practice-import-demo</module>
         <module>spring-practice-demo-context</module>
+        <module>spring-practice-redis-demo</module>
     </modules>
 
     <parent>
