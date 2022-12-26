@@ -11,6 +11,7 @@
         <module>spring-practice-cycledepency-demo</module>
         <module>spring-practice-autoconfigure-demo</module>
         <module>spring-practice-import-demo</module>
+        <module>spring-practice-tx-demo</module>
         <module>spring-practice-demo-context</module>
         <module>spring-practice-redis-demo</module>
     </modules>
@@ -71,6 +72,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.2.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.3.2</version>
             </dependency>
 
         </dependencies>
