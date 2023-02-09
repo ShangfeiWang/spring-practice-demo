@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotEmpty;
 
 @RestController
+@RequestMapping("/HelloController")
 public class HelloController implements LastModified {
 
     @Autowired

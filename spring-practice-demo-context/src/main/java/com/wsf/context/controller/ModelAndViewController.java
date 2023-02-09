@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ModelAndViewController {
 
-    @RequestMapping("/hello2")
+    @RequestMapping("/modelAndView")
     public String hello2(String name) {
         System.out.println("hello2.....");
         return "page/index";
