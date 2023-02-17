@@ -9,8 +9,8 @@ import com.wsf.spring.aop.aspect.HelloAspect;
 public interface UserService {
 
 
-    public void insert();
+    void insert();
 
     @HelloAspect
-    public void deleteUser();
+    void deleteUser();
 }
