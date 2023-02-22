@@ -26,6 +26,16 @@ public class LifeCycleBean implements InitializingBean, BeanFactoryAware {
 
     private String port;
 
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Autowired
     public void autowire(@Value("${server.port}") String port) {
         log.info("autowire....port:{}", port);

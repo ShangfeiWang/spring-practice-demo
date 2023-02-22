@@ -5,6 +5,7 @@ import com.wsf.context.service.UserService;
 import com.wsf.context.service.UserService2;
 import com.wsf.context.service.UserService4;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.util.StringUtils;
 
 public class Test {
@@ -24,6 +25,9 @@ public class Test {
         for (String string : strings) {
             System.out.println(string);
         }
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
     }
 
     public static void testConstructor(ApplicationContext applicationContext) {
