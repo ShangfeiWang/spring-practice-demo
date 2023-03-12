@@ -16,6 +16,8 @@
         <module>spring-practice-redis-demo</module>
         <module>spring-practice-jdk-demo</module>
         <module>spring-practice-boomfilter-demo</module>
+        <module>spring-practice-rabbitmq-demo</module>
+        <module>spring-practice-alipay-demo</module>
     </modules>
 
     <parent>
@@ -101,6 +103,17 @@
                 <artifactId>redisson</artifactId>
                 <version>3.19.3</version>
             </dependency>
+
+            <!-- 支付宝 -->
+            <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.34.0.ALL</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
+
 </project>

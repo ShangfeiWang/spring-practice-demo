@@ -76,6 +76,31 @@ public class StockServiceImpl implements StockService {
 
 
     /**
+     * 删-更新-删
+     * <p>
+     * 先删除的目的是 尽可能的去保证数据的一致行，假如在删除缓存 到 更新数据这个操作时间内，没有其他线程进来，那么更新完成之后其他线程进来是直接能获取到最新的数据
+     * 如果是有其他的线程进来了，那此时缓存和数据库也是不一致的，这时就需要使用我们延迟删除缓存的策略来进行补偿
+     */
+    public void updateDbAndDeleteCacheAfterDeleteCache(long stockCount) {
+        log.info("A线程删除缓存数据开始.....");
+        redisTemplate.delete(stockKey);
+        log.info("A线程删除缓存数据结束.....");
+        log.info("A线程更新数据库开始.....");
+        stockDao.updateStock(stockCount);
+        log.info("A线程更新数据库结束.....");
+        // 异步再去删除一次缓存，保证最终一致性
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            redisTemplate.delete(stockKey);
+        }).start();
+    }
+
+
+    /**
      * 先更新数据库，后移除缓存
      * <p>
      * 缓存刚好失效

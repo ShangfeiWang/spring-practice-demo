@@ -12,7 +12,7 @@ public class ThreadLocalDemo1 {
 
     //private static  ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 100000; i++) {
 
@@ -27,6 +27,7 @@ public class ThreadLocalDemo1 {
             });
         }
         System.gc();
+        Thread.sleep(5000);
         System.out.println(executorService);
     }
 
