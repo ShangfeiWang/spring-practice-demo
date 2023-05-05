@@ -18,6 +18,7 @@
         <module>spring-practice-boomfilter-demo</module>
         <module>spring-practice-rabbitmq-demo</module>
         <module>spring-practice-alipay-demo</module>
+        <module>spirng-practice-pdftoimage-demo</module>
     </modules>
 
     <parent>
@@ -41,6 +42,13 @@
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>2.7.5</version>
+            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -118,6 +126,19 @@
                 <version>2.7.5</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>2.0.23</version>
+                <type>bundle</type>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.4</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -158,6 +179,13 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.felix</groupId>-->
+            <!--                <artifactId>maven-bundle-plugin</artifactId>-->
+            <!--                <extensions>true</extensions>-->
+            <!--            </plugin>-->
+
         </plugins>
     </build>
 
