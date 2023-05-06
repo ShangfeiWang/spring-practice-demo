@@ -1,5 +1,6 @@
 package com.wsf.pdf.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -9,9 +10,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 public class PdfUtil {
 
     /**
@@ -57,6 +61,53 @@ public class PdfUtil {
         } catch (IOException e) {
             e.printStackTrace();
             return Pair.of(false, "PDF转化图片异常");
+        } finally {
+            try {
+                if (doc != null) {
+                    doc.close();
+                }
+            } catch (IOException e) {
+                System.out.println("关闭文档失败");
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static List<File> pdfToImage2(InputStream inputStream, String desFilePath, String desFileName, String imageType) {
+
+        //目录不存在则创建目录
+        File destination = new File(desFilePath);
+        if (!destination.exists()) {
+            boolean flag = destination.mkdirs();
+            System.out.println("创建文件夹结果：" + flag);
+        }
+        PDDocument doc = null;
+        try {
+            //加载PDF文件
+            doc = PDDocument.load(inputStream);
+            PDFRenderer renderer = new PDFRenderer(doc);
+            //获取PDF文档的页数
+            int pageCount = doc.getNumberOfPages();
+            System.out.println("文档一共" + pageCount + "页");
+            List<File> fileList = new ArrayList<>();
+            for (int i = 0; i < pageCount; i++) {
+                //只有一页的时候文件名为传入的文件名，大于一页的文件名为：文件名_自增加数字(从1开始)
+                String realFileName = pageCount > 1 ? desFileName + "_" + (i + 1) : desFileName;
+                //每一页通过分辨率和颜色值进行转化
+                BufferedImage bufferedImage = renderer.renderImageWithDPI(i, 500 * 2, ImageType.RGB);
+                String filePath = desFilePath + File.separator + realFileName + "." + imageType;
+                //写入文件
+                File file = new File(filePath);
+                ImageIO.write(bufferedImage, imageType, file);
+                //ImageIO.write(bufferedImage, imageType, outputStream);
+                fileList.add(file);
+            }
+            return fileList;
+        } catch (IOException e) {
+            log.error("转换错误", e);
+            return Collections.emptyList();
+
         } finally {
             try {
                 if (doc != null) {
