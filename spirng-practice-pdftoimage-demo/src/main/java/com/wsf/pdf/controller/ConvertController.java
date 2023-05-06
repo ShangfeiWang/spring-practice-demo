@@ -38,7 +38,7 @@ public class ConvertController {
 
         String originalName = multipartFile.getOriginalFilename();
         String name = originalName.substring(0, originalName.lastIndexOf("."));
-        String parentPath = "/Users/admin/temp";
+        String parentPath = "/root/temp";
 
         List<File> fileList = PdfUtil.pdfToImage2(multipartFile.getInputStream(), parentPath, name, "png");
         String downloadFilePath;
