@@ -62,11 +62,6 @@
             <artifactId>pdfbox</artifactId>
             <type>bundle</type>
         </dependency>
-
-        <dependency>
-            <groupId></groupId>
-            <artifactId>thymeleaf</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
